@@ -54,7 +54,7 @@ const pressItems = [
 ]
 
 function PressRow({
-  num, badge, title, date, paragraphs, coverageHref, isOpen, onToggle, onClose,
+  num, badge, title, date, paragraphs, isOpen, onToggle, onClose,
 }: (typeof pressItems)[number] & { isOpen: boolean; onToggle: () => void; onClose: () => void }) {
   const canExpand = paragraphs !== null
 
@@ -91,14 +91,6 @@ function PressRow({
           <div style={{ fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.3, marginBottom: '0.5rem' }}>
             {title}
           </div>
-          {!canExpand && (
-            <p className="font-mono-dm" style={{ fontSize: '0.68rem', lineHeight: 1.75, color: 'var(--color-muted)', maxWidth: '52rem' }}>
-              The Tremclad Turbo &quot;PSSSSHT&quot; campaign earned national coverage across Strategy Online, Campaign Canada, and Ads of the World — award-nominated for turning a product sound into a cultural moment.
-              {coverageHref && (
-                <> <a href={coverageHref} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-pink)' }}>View coverage ↗</a></>
-              )}
-            </p>
-          )}
         </div>
         <div className="font-mono-dm press-date" style={{ fontSize: '0.62rem', color: 'var(--color-muted)', whiteSpace: 'nowrap', paddingTop: '0.2rem', textAlign: 'right' }}>
           {date}
