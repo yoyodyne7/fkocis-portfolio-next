@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette */
+  --color-pink: #E4197C;
+  --color-pink-light: #FDF0F6;
+  --color-green: #1D8A45;
+  --color-green-deep: #0C2B1A;
+  --color-rust: #C2501A;
+  --color-cream: #F5F0E8;
+  --color-ghost: #E8E5DF;
+  --color-border: #E2DED8;
+  --color-muted: #8C8880;
+  --color-bg: #FAFAF8;
+  --color-ink: #1A1918;
+
+  /* Fonts */
+  --font-syne: var(--font-syne-var), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono-var), 'Courier New', monospace;
+
+  /* Animations */
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-marquee: marquee-scroll 32s linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Reset & base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background: var(--color-bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-syne);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'kern';
+  overflow-x: hidden;
+  position: relative;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  --nav-height: 52px;
+  --side-pad: clamp(1.5rem, 5vw, 5rem);
+  --section-pad: clamp(5rem, 12vw, 10rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Ghost word utility ─────────────────────────────────── */
+.ghost-word {
+  position: absolute;
+  font-size: clamp(8rem, 22vw, 20rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--color-ghost);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+  line-height: 0.9;
+  font-family: var(--font-syne);
+}
+
+/* ── DM Mono utility ────────────────────────────────────── */
+.font-mono-dm {
+  font-family: var(--font-mono);
+}
+
+/* ── Section label utility ──────────────────────────────── */
+.section-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shimmer skeleton ───────────────────────────────────── */
+.skel-bar {
+  height: 13px;
+  background: linear-gradient(90deg, #EDE9E3 25%, #E2DDD7 50%, #EDE9E3 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: var(--animate-shimmer);
+}
+.skel-block {
+  height: 140px;
+  background: linear-gradient(90deg, #EDE9E3 25%, #E2DDD7 50%, #EDE9E3 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: var(--animate-shimmer);
+  margin-top: 1.5rem;
 }
