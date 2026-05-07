@@ -10,6 +10,7 @@ import { Vision } from '@/components/sections/Vision'
 import { WritingGrid } from '@/components/sections/WritingGrid'
 import { PressReleases } from '@/components/sections/PressReleases'
 import { CoverageLinks } from '@/components/sections/CoverageLinks'
+import { FeaturedProject } from '@/components/sections/FeaturedProject'
 import { Contact } from '@/components/sections/Contact'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <main>
         <Hero />
         <Metrics />
+        <FeaturedProject />
 
         <SectionRow id="work-video" num="01" title="Video &amp; TV Production" right="4 campaigns" />
         <VideoShowcase />
